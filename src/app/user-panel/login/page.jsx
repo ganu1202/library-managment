@@ -35,14 +35,15 @@ export default function LoginPage() {
     if (res.error) {
       setError("Invalid email or password");
     } else {
-      router.push("/"); // or wherever you want
+      router.push("/"); // redirect after login
     }
   };
 
   return (
-    <div className="flex min-h-screen">
-      <div className="flex-1 flex items-center justify-center bg-[#12141D]">
-        <Card className="w-full max-w-sm bg-[#12151F] text-white border-0 border-[#12151F] shadow-lg">
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Left Section - Login Form */}
+      <div className="flex-1 flex items-center justify-center bg-[#12141D] p-6">
+        <Card className="w-full max-w-sm bg-[#12151F] text-white border-0 shadow-lg">
           <CardHeader>
             <CardTitle>
               <div className="flex items-center gap-2">
@@ -92,20 +93,19 @@ export default function LoginPage() {
             </form>
           </CardContent>
 
-          <CardFooter className="flex-col gap-2">
+          <CardFooter className="flex flex-col gap-2">
             <Button
               onClick={handleLogin}
               className="w-full bg-[#E7C9A5] text-black"
             >
               Login
             </Button>
-            <span className="text-wrap">
-              Don't have an account?
+            <span className="text-center text-sm">
+              Don&apos;t have an account?
               <span
-                className="text-[#E7C9A5] cursor-pointer"
+                className="text-[#E7C9A5] cursor-pointer ml-1"
                 onClick={() => router.push("/user-panel/register")}
               >
-                {" "}
                 Register here
               </span>
             </span>
@@ -113,8 +113,15 @@ export default function LoginPage() {
         </Card>
       </div>
 
+      {/* Right Section - Background Image */}
       <div
-        className="flex-1 bg-cover bg-center"
+        className="hidden md:flex flex-1 bg-cover bg-center"
+        style={{ backgroundImage: 'url("/img.png")' }}
+      ></div>
+
+      {/* Mobile Background */}
+      <div
+        className="md:hidden h-[200px] bg-cover bg-center"
         style={{ backgroundImage: 'url("/img.png")' }}
       ></div>
     </div>

@@ -17,7 +17,6 @@ import { useRouter } from "next/navigation";
 
 // ---- API call function ----
 const registerUser = async (formData) => {
-  // Convert FormData object to JSON
   const body = new FormData();
   body.append("name", formData.name);
   body.append("email", formData.email);
@@ -31,9 +30,8 @@ const registerUser = async (formData) => {
     body,
   });
 
-  const data = await res.json(); // ✅ Safe now
+  const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Registration failed");
-  console.log(res);
   return data;
 };
 
@@ -70,8 +68,9 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex min-h-screen">
-      <div className="flex-1 flex items-center justify-center bg-[#12141D]">
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Left Section - Signup Form */}
+      <div className="flex-1 flex items-center justify-center bg-[#12141D] p-6">
         <Card className="w-full max-w-sm bg-[#12151F] text-white border-0 shadow-lg">
           <CardHeader>
             <CardTitle>
@@ -170,7 +169,7 @@ export default function SignUpPage() {
             >
               {mutation.isPending ? "Signing Up..." : "Sign Up"}
             </Button>
-            <span className="text-wrap">
+            <span className="text-center text-sm">
               Have an account already?{" "}
               <span
                 className="text-[#E7C9A5] cursor-pointer"
@@ -183,8 +182,15 @@ export default function SignUpPage() {
         </Card>
       </div>
 
+      {/* Right Section - Background Image (Desktop) */}
       <div
-        className="flex-1 bg-cover bg-center"
+        className="hidden md:flex flex-1 bg-cover bg-center"
+        style={{ backgroundImage: 'url("/img (1).png")' }}
+      ></div>
+
+      {/* Mobile Background Image (Shown Below Form) */}
+      <div
+        className="md:hidden h-[200px] bg-cover bg-center"
         style={{ backgroundImage: 'url("/img (1).png")' }}
       ></div>
     </div>
