@@ -1,11 +1,23 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { BookOpen, CircleUser, LogOut, Star } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function BookDetailsPage() {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const userName = session?.user?.name || "User";
+  // console.log("session:", session);
+  // console.log(session?.user?.name);
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    router.push("/user-panel/login");
+  };
+
   const book = {
     title: "Origin",
     author: "Dan Brown",
@@ -41,12 +53,16 @@ export default function BookDetailsPage() {
             </Link>
           </div>
 
+          {/* User info + logout */}
           <div className="flex items-center gap-2 pl-1">
             <CircleUser />
-            <span className="text-gray-300">Adrian</span>
+            <span className="text-gray-300 font-medium">
+              {userName.split(" ")[0]}
+            </span>
             <LogOut
               className="ml-2 cursor-pointer text-red-500 hover:text-red-600 transition-colors"
               size={22}
+              onClick={handleLogout}
             />
           </div>
         </div>
@@ -138,21 +154,20 @@ export default function BookDetailsPage() {
                 where people with psychic abilities live in harmony with
                 advanced technology. The story follows the main characters,
                 Harriet and Sam, who are drawn together under unusual
-                circumstances.
-                {"\n\n"}Harriet, a talented psychic, works for a company that
-                offers psychic services in a futuristic society. When she finds
-                herself tangled in a dangerous situation involving a mysterious
-                conspiracy, she enlists the help of Sam, a former investigator
-                with a dark past. As they uncover the secrets surrounding a
-                glass house—a mysterious structure tied to their
-                investigation—they must navigate their growing attraction while
-                facing hidden dangers.
-                {"\n\n"}The novel combines elements of mystery, suspense, and
-                romance, with a focus on psychic abilities, futuristic
-                technology, and the complexities of relationships. The title,
-                "People in Glass Houses," symbolizes the fragile nature of the
-                world the characters inhabit and the vulnerabilities they face
-                in their personal and professional lives.
+                circumstances. {"\n\n"}Harriet, a talented psychic, works for a
+                company that offers psychic services in a futuristic society.
+                When she finds herself tangled in a dangerous situation
+                involving a mysterious conspiracy, she enlists the help of Sam,
+                a former investigator with a dark past. As they uncover the
+                secrets surrounding a glass house—a mysterious structure tied to
+                their investigation—they must navigate their growing attraction
+                while facing hidden dangers. {"\n\n"}The novel combines elements
+                of mystery, suspense, and romance, with a focus on psychic
+                abilities, futuristic technology, and the complexities of
+                relationships. The title, "People in Glass Houses," symbolizes
+                the fragile nature of the world the characters inhabit and the
+                vulnerabilities they face in their personal and professional
+                lives.
               </p>
             </div>
           </div>
