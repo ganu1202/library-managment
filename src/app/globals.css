@@ -120,3 +120,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+html, body {
+  margin: 0;
+  padding: 20px 20px 20px 20px ;
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at 30% 20%, #1a1e2a, #0c0f18 80%);
+  background-image: radial-gradient(circle at 25% 20%, rgba(25,42,70,0.5) 0%, transparent 70%),
+                    radial-gradient(circle at 75% 80%, rgba(15,20,40,0.4) 0%, transparent 70%),
+                    linear-gradient(180deg, #0b0e17 0%, #05080f 100%);
+  color: #fff;
+  min-height: 100vh;
+}

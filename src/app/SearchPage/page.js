@@ -26,7 +26,7 @@ export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [filterGenre, setFilterGenre] = useState("");
 
-  // Automatically reset filter to "all" when query is cleared
+  // Automatically reset filter to "all" when query is cleared if I add all option
   useEffect(() => {
     if (query.trim() === "") {
       setFilterGenre("");
@@ -54,7 +54,7 @@ export default function SearchPage() {
     <main className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
+
       <section className="text-center py-20 px-4">
         <p className="uppercase tracking-widest text-gray-400 mb-2 text-sm">
           Discover Your Next Great Read
@@ -64,7 +64,7 @@ export default function SearchPage() {
           <span className="text-[#EED1AC]">Any Book</span> In Our Library
         </h1>
 
-        {/* Search Bar + Filter */}
+        {/* Search Bar*/}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
           <div className="relative w-[390px]">
             <Search size={20} className="absolute left-3 top-4 text-[#EED1AC]" />
@@ -122,19 +122,9 @@ export default function SearchPage() {
                   className="w-full"
                   layout="responsive"
                 />
-                <Image
-                  src={book.image}
-                  alt={book.title}
-                  width={100}
-                  height={150}
-                  className="w-full"
-                  layout="responsive"
-                />
               </div>
             </div>
             ))}
-
-
 
           </div>
         </section>

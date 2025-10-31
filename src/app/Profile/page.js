@@ -11,7 +11,6 @@ import {
   BookOpen,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import Navbar from "../components/Navbar";
 
 const borrowedBooks = [
@@ -59,7 +58,7 @@ export default function ProfilePage() {
       <Navbar />
       <div className="flex justify-center px-[120px] py-[50px] gap-[40px]">
         
-        {/* LEFT COLUMN: PROFILE CARD */}
+  
         <div className="bg-[#232839] rounded-3xl w-[620px] h-[800px] p-6 relative shadow-lg">
           <div className="absolute top-[-20px] left-1/2 transform -translate-x-1/2 bg-[#464F6F] w-[60px] h-[75px] rounded-b-3xl"></div>
           <div className="flex py-20 flex-col items-left text-left">
@@ -105,32 +104,32 @@ export default function ProfilePage() {
           </div>
         </div>
 
-     {/* RIGHT COLUMN: BORROWED BOOKS */}
+     {/*BORROWED BOOKS */}
         <div className="flex-1">
           <h2 className="px-65 text-[22px] font-semibold mb-6">Borrowed books</h2>
 
           <div className="px-50 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-[20px] justify-end pr-[0px]">
 
-            {borrowedBooks.map((book) => (
-              <Card
-  key={book.id}
-  className={` bg-[#1c2333] border-0 rounded-2xl shadow-lg transition hover:scale-[1.02] w-[260px] h-[400px] mx-auto relative gap-[20px]  ${
-    book.status === "overdue"
-      ? "border border-red-500"
-      : "border-transparent"
-  }`}
->
+              {borrowedBooks.map((book) => (
+                <Card
+                      key={book.id}
+                      className={` bg-[#1c2333] border-0 rounded-2xl shadow-lg transition hover:scale-[1.02] w-[260px] h-[400px] mx-auto relative gap-[20px]  ${
+                        book.status === "overdue"
+                          ? "border border-red-500"
+                          : "border-transparent"
+                      }`}
+                    >
 
-                <CardContent>
+                        <CardContent>
                   <div className="flex flex-col items-start">
                     <div className="w-full flex justify-right">
                       <Image
-  src={book.image}
-  alt={book.title}
-  width={300}
-  height={520}
-  className="rounded-lg mx-auto mt-2 mb-2 object-cover"
-/>
+                            src={book.image}
+                            alt={book.title}
+                            width={300}
+                            height={520}
+                            className="rounded-lg mx-auto mt-2 mb-2 object-cover"
+                          />
 
 
                     </div>

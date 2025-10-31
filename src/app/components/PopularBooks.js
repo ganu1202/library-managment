@@ -13,6 +13,7 @@ const books = [
 
 export default function PopularBooks() {
   return (
+    //Grid Container of Popular Books
     <section className="mt-[-30px] p-[100px]">
       <h2 className="mb-8 text-[1.8rem] font-bold text-white px-[20px]">Popular Books</h2>
 
