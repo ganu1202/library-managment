@@ -22,6 +22,16 @@ export async function POST(req) {
       );
     }
 
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!passwordPattern.test(password)) {
+      return NextResponse.json(
+        { error: "Password must contain at least 8 characters, including uppercase, lowercase, number, and special character." },
+        { status: 400 }
+      );
+    }
+
+
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
       where: { email },
